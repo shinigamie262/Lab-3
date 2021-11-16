@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import Contacts from "./screens/Contacts";
 import Options from "./screens/Options";
 import Profile from "./screens/Profile";
@@ -9,25 +10,19 @@ import Favorites from "./screens/Favorites";
 import User from "./screens/User";
 import colors from "../../../utils/colors";
 import { MaterialIcons } from "@expo/vector-icons";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+// import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
-const getTabBarIcon =
+const getDrawerItemIcon =
   (icon) =>
-  ({ tintColor }) =>
-    <MaterialIcons name={icon} size={26} style={{ color: tintColor }} />;
-
+  ({ tinColor }) =>
+    <MaterialIcons name={icon} size={22} style={{ color: tinColor }} />;
 const Stack = createNativeStackNavigator();
 const ContactsScreens = () => {
   return (
     <Stack.Navigator
       initialRouteName="Contacts"
-      navigationOptions={{
-        tabBarIcon: getTabBarIcon("list"),
-      }}
       screenOptions={{
-        headerTintColor: "white",
-        headerStyle: { backgroundColor: "tomato" },
-        headerTitleAlign: "center",
+        headerShown: false,
       }}
     >
       <Stack.Screen
@@ -58,9 +53,7 @@ const FavoritesScreens = () => {
   return (
     <Stack.Navigator
       initialRouteName="Favorites"
-      navigationOptions={{
-        tabBarIcon: getTabBarIcon("star"),
-      }}
+      screenOptions={{ headerShown: false }}
     >
       <Stack.Screen
         name="Favorites"
@@ -110,47 +103,30 @@ const UserScreens = ({ navigation }) => {
   );
 };
 
-const Tab = createMaterialBottomTabNavigator();
-const TabNavigator = () => {
+const Drawer = createDrawerNavigator();
+
+const DrawerNavigation = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="ContactsScreen"
-        tabBarOptions={{
-          headerStyle: {
-            backgroundColor: colors.blue,
-          },
-          showLabel: false,
-          showIcon: true,
-          activeTintColor: colors.blue,
-          inactiveTintColor: colors.greyDark,
-          //   renderIndicator: () => null,
-        }}
-      >
-        <Tab.Screen
+      <Drawer.Navigator initialRouteName="ContactsScreens">
+        <Drawer.Screen
           name="ContactsScreens"
           component={ContactsScreens}
-          options={{
-            tabBarIcon: getTabBarIcon("list"),
-          }}
+          options={{ drawerIcon: getDrawerItemIcon("list") }}
         />
-        <Tab.Screen
+        <Drawer.Screen
           name="FavoritesScreens"
           component={FavoritesScreens}
-          options={{
-            tabBarIcon: getTabBarIcon("star"),
-          }}
+          options={{ drawerIcon: getDrawerItemIcon("star") }}
         />
-        <Tab.Screen
+        <Drawer.Screen
           name="UserScreens"
           component={UserScreens}
-          options={{
-            tabBarIcon: getTabBarIcon("person"),
-          }}
+          options={{ drawerIcon: getDrawerItemIcon("person") }}
         />
-      </Tab.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };
 
-export default TabNavigator;
+export default DrawerNavigation;

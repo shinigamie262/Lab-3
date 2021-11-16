@@ -5,7 +5,13 @@ import { Text, View } from "react-native";
 
 const App = () => {
   return (
-    <View>
+    <View
+      style={{
+        backgroundColor: "blue",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Text>Hello</Text>
     </View>
   );

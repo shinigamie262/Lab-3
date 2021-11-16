@@ -6,8 +6,8 @@ import Contacts from "./screens/Contacts";
 import Options from "./screens/Options";
 import Profile from "./screens/Profile";
 import Favorites from "./screens/Favorites";
-import colors from "../../../utils/colors";
 import User from "./screens/User";
+import colors from "../../../utils/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 

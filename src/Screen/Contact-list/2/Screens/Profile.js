@@ -7,7 +7,10 @@ import colors from "../../../../utils/colors";
 
 const Profile = ({ route }) => {
   const { contact } = route.params;
-
+  // const { contact, setContact } = useState([]);
+  // useEffect(() => {
+  //   fetchRandomContact().then((contact = setContact(contact)));
+  // });
   const { avatar, name, email, phone, cell } = contact;
   return (
     <View style={styles.container}>
